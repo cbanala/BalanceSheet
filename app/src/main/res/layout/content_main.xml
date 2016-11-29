@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:gravity="center_horizontal"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="company.codeforce.org.balancesheet.view.activities.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <TextView
+        android:id="@+id/summary_tv"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:layout_height="wrap_content"
+        android:text="Summary" />
+
+    <TextView
+        android:id="@+id/balance_sheet_balance_amount_tv"
+        android:layout_below="@id/summary_tv"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="@color/green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Balance Amount : _______"/>
+
+    <TextView
+        android:id="@+id/support_deductions"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textColor="@color/deductions_red"
+        android:layout_below="@+id/balance_sheet_balance_amount_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Support Deductions : _____"/>
+
+    <TextView
+        android:id="@+id/other_deductions"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textColor="#F44336"
+        android:layout_below="@id/support_deductions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Other Deductions : _______ "/>
+
+    <TextView
+        android:id="@+id/final_amount"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textColor="@color/add_btn_blue"
+        android:layout_below="@id/other_deductions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Final Amount"/>
+
+    <Button
+        android:id="@+id/final_balance_after_deductions"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:background="@color/add_btn_blue"
+        android:textColor="@color/white"
+        android:layout_below="@+id/final_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="$00.00"
+        android:ems="6"/>
+</RelativeLayout>

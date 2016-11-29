@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="20dp"
+    tools:context=".view.activities.SecondPayPeriodActivity">
+
+    <TextView
+        android:id="@+id/second_pay_check_main_tv"
+        android:text="Second Pay Check"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:id="@+id/divider_after_second_heading"
+        android:layout_below="@id/second_pay_check_main_tv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#616161"/>
+
+    <LinearLayout
+        android:id="@+id/second_pay_period_dates_lay"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/second_pay_check_main_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="First Pay Period :"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:text="16th"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="to"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:text="31st"/>
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/second_pay_period_tv"
+            android:layout_below="@+id/second_pay_period_dates_lay"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="Pay Period :"/>
+
+        <EditText
+            android:id="@+id/second_pay_period_et"
+            android:layout_alignBaseline="@id/second_pay_period_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:ems="8"
+            android:gravity="center"
+            android:textSize="16sp"
+            tools:text="01/31/16"/>
+
+
+    <TextView
+        android:id="@+id/second_paycheck_date_tv"
+        android:layout_below="@+id/second_pay_period_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="PayCheck Date : "/>
+
+    <EditText
+        android:id="@+id/second_paycheck_date_et"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@id/second_paycheck_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:ems="8"
+        android:gravity="center"
+        tools:text = "feb 25th 2016"/>
+
+    <TextView
+        android:id="@+id/second_your_balance_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Your Balance :"
+        android:layout_below="@+id/second_paycheck_date_tv"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/second_your_balance_et"
+        android:layout_alignBaseline="@+id/second_your_balance_tv"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:gravity="center"
+        tools:text = "$5230.00"/>
+
+    <TextView
+        android:id="@+id/second_rate_tv"
+        android:layout_below="@+id/second_your_balance_tv"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate : "/>
+
+    <EditText
+        android:id="@+id/second_rate_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@id/second_rate_tv"
+        android:ems="8"
+        android:gravity="center"
+        tools:text = "$50.59"/>
+
+    <TextView
+        android:id="@+id/second_hours_tv"
+        android:layout_below="@id/second_rate_tv"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hours :"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/second_hours_et"
+        android:layout_alignBaseline="@id/second_hours_tv"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:gravity="center"
+        tools:text = "80hrs"/>
+
+    <TextView
+        android:id="@+id/second_credit_tv"
+        android:layout_below="@id/second_hours_tv"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Credit : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/second_credit_et"
+        android:layout_alignBaseline="@id/second_credit_tv"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:textSize="16sp"
+        android:ems="8"
+        android:gravity="center"
+        tools:text = "$3450.89"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/second_debit_tv"
+        android:layout_below="@id/second_credit_tv"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:text="Debit :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/second_debit_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/second_debit_tv"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:ems="8"
+        tools:text = "$2500.00"/>
+
+    <TextView
+        android:id="@+id/second_ending_balance_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/second_debit_tv"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Ending Balance :"/>
+
+    <EditText
+        android:id="@+id/second_ending_balance_et"
+        android:layout_alignBaseline="@id/second_ending_balance_tv"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:gravity="center"
+        tools:text= "Opening + (credit - debit)"
+        android:layout_width="wrap_content"
+        android:ems="8"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/second_calculate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        android:ems="6"
+        android:textColor="#ffffff"
+        android:text="Calculate"
+        android:layout_alignParentLeft="true"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:background="#616161"
+        android:layout_below="@id/second_ending_balance_tv"/>
+
+    <Button
+        android:id="@+id/second_save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff"
+        android:layout_centerInParent="true"
+        android:text="Save"
+        android:ems="6"
+
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:background="#616161"
+        android:layout_below="@id/second_ending_balance_tv"/>
+
+    <Button
+        android:id="@+id/second_submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff"
+        android:text="Submit"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:ems="6"
+        android:background="#616161"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/second_ending_balance_tv"/>
+
+    <View
+        android:id="@+id/second_divider_after_save_btn"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/second_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#616161"/>
+
+    <TextView
+        android:id="@+id/second_final_balance_tv"
+        android:layout_below="@id/second_divider_after_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Balance: ________ "/>
+
+
+</RelativeLayout>

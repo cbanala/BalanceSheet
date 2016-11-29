@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#D50000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Deductions : "/>
+
+        <TextView
+            android:id="@+id/your_deductions_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#D50000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="$00.00"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorPrimary"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:text="Monthly Deduction View"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <EditText
+            android:id="@+id/enter_amount_et"
+            android:gravity="center"
+            android:layout_below="@+id/enter_amount_tv"
+            android:layout_alignLeft="@+id/enter_amount_tv"
+            android:layout_alignRight="@id/enter_amount_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_below="@+id/enter_month_tv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/add"/>
+
+        <TextView
+            android:id="@+id/enter_amount_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Amount($)"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/add_btn"
+            android:layout_toStartOf="@+id/add_btn"
+            android:layout_marginRight="17dp"
+            android:layout_marginEnd="17dp" />
+
+        <TextView
+            android:id="@+id/enter_year_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Enter Year "
+            android:layout_alignParentLeft="true" />
+
+        <Spinner
+            android:id="@+id/date_picker_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/enter_month_tv"
+            android:layout_alignLeft="@id/enter_month_tv"
+            android:layout_toLeftOf="@+id/enter_amount_et"
+            android:layout_toStartOf="@+id/enter_amount_et"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/enter_month_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Enter Month "
+            android:layout_marginRight="18dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/enter_amount_et"
+            android:layout_toStartOf="@+id/enter_amount_et" />
+
+        <Spinner
+            android:id="@+id/enter_year_spinner"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@+id/enter_year_tv"
+            android:layout_alignLeft="@+id/enter_year_tv"
+            android:layout_alignStart="@+id/enter_year_tv" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/list_view_layout"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+
+</LinearLayout>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="20dp"
+    tools:context=".view.activities.FirstPayPeriodActivity">
+
+    <TextView
+        android:id="@+id/first_pay_check_main_tv"
+        android:text="First Pay Check"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:id="@+id/divider_after_first_pay_check_heading"
+        android:layout_below="@+id/first_pay_check_main_tv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#616161"/>
+
+    <LinearLayout
+        android:id="@+id/first_pay_period_dates_lay"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/first_pay_check_main_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="First Pay Period :"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:text="01st"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="to"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:text="15th"/>
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/first_pay_period_tv"
+            android:layout_below="@+id/first_pay_period_dates_lay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="Pay Period :"/>
+
+        <EditText
+            android:id="@+id/first_pay_period_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/first_pay_period_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:ems="8"
+            tools:text="01/15/16"/>
+
+
+    <TextView
+        android:id="@+id/first_paycheck_date_tv"
+        android:layout_below="@+id/first_pay_period_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="PayCheck Date : "/>
+
+    <EditText
+        android:id="@+id/first_paycheck_date_et"
+        android:layout_alignBaseline="@id/first_paycheck_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:ems="8"
+        tools:text = "02/10/16"/>
+
+    <TextView
+        android:id="@+id/first_opening_balance_tv"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/first_paycheck_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Opening Balance :"/>
+
+    <EditText
+        android:id="@+id/first_opening_balance_et"
+        android:layout_alignBaseline="@+id/first_opening_balance_tv"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:ems="8"
+        tools:text = "$5230.00"/>
+
+    <TextView
+        android:id="@+id/first_rate_tv"
+        android:layout_below="@+id/first_opening_balance_tv"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate : "/>
+
+    <EditText
+        android:id="@+id/first_rate_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:ems="8"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@id/first_rate_tv"
+        tools:text = "$50.59"/>
+
+    <TextView
+        android:id="@+id/first_hours_tv"
+        android:layout_below="@id/first_rate_tv"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hours :"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/first_hours_et"
+        android:layout_alignBaseline="@id/first_hours_tv"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:ems="8"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text = "80hrs"/>
+
+    <TextView
+        android:id="@+id/first_credit_tv"
+        android:layout_below="@id/first_hours_tv"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Credit : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/first_credit_et"
+        android:layout_alignBaseline="@id/first_credit_tv"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:textSize="16sp"
+        android:gravity="center"
+        tools:text = "$3450.89"
+        android:ems="8"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/first_debit_tv"
+        android:layout_below="@id/first_credit_tv"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:text="Debit :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/first_debit_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignBaseline="@id/first_debit_tv"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:ems="8"
+        tools:text = "$2500.00"/>
+
+    <TextView
+        android:id="@+id/first_your_balance_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/first_debit_tv"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Remaining Balance :"/>
+
+    <EditText
+        android:id="@+id/first_your_balance_et"
+        android:layout_alignBaseline="@id/first_your_balance_tv"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        tools:text= "Opening + (credit - debit)"
+        android:ems="8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/first_calculate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff"
+        android:text="Calculate"
+        android:textStyle="bold"
+        android:ems="6"
+        android:padding="5dp"
+        android:textSize="16sp"
+        android:background="#616161"
+        android:layout_below="@+id/first_your_balance_tv"/>
+
+    <Button
+        android:id="@+id/first_save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="6"
+        android:textColor="#ffffff"
+        android:layout_centerInParent="true"
+        android:text="Save"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:background="#616161"
+        android:layout_below="@+id/first_your_balance_tv"/>
+
+    <Button
+        android:id="@+id/first_submit_btn"
+        android:layout_alignBaseline="@id/first_save_btn"
+        android:layout_alignParentRight="true"
+        android:background="#616161"
+        android:textSize="16sp"
+        android:text="Submit"
+        android:ems="6"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/first_divider_after_save_button"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/first_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#616161"/>
+
+    <TextView
+        android:id="@+id/first_final_balance_tv"
+        android:layout_below="@id/first_divider_after_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Balance: ________ "/>
+
+</RelativeLayout>
