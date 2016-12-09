@@ -2,6 +2,7 @@ package company.codeforce.org.balancesheet.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
@@ -21,44 +22,15 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     SQLiteDatabase sqLiteDatabase;
 
-    private final static String TABLE_NAME_BALANCESHEET = "balance_sheet_table";
-    private final static String TABLE_NAME_SUPPORT = "support_table";
-    private final static String TABLE_NAME_MONTHLYVIEW = "monthly_view";
+
 
     String TABLE_NAME[] = {
-                            TABLE_NAME_BALANCESHEET,
-                            TABLE_NAME_SUPPORT,
-                            TABLE_NAME_MONTHLYVIEW
-                            };
+            AppConstants.TABLE_NAME_BALANCESHEET,
+            AppConstants.TABLE_NAME_SUPPORT,
+            AppConstants.TABLE_NAME_MONTHLYVIEW
+    };
 
-    //For BalanceSheet
-    private final static String COLUMN_ID = "id";
-    private final static String COLUMN_PERIOD = "period";
-    private final static String COLUMN_PAYCHECKDATE = "payCheckDate";
-    private final static String COLUMN_OPENING_BALANCE = "openingBalance";
-    private final static String COLUMN_RATE = "rate";
-    private final static String COLUMN_HOURS = "hours";
-    private final static String COLUMN_CREDIT = "credit";
-    private final static String COLUMN_DEBIT = "debit";
-    private final static String COLUMN_ENDING_BALANCE = "endingBalance";
 
-    //For Support
-    private final static String COLUMN_SUPPORT_ID = "id";
-    private final static String COLUMN_SUPPORT_MONTH = "month";
-    private final static String COLUMN_SUPPORT_YEAR = "year";
-    private final static String COLUMN_SUPPORT_AMOUNT = "amount";
-
-    //Other Deduction
-    private final static String COLUMN_OD_Description = "description";
-    private final static String COLUMN_OD_DATE = "date";
-    private final static String COLUMN_OD_AMOUNT = "amount";
-
-    //Monthlyview
-    private final static String COLUMN_MONTHVIEW_MONTH = "month";
-    private final static String COLUMN_MONTHVIEW_YEAR = "year";
-    private final static String COLUMN_MONTH_OPENING_BALANCE = "openingBalance";
-    private final static String COLUMN_MONTH_ENDING_BALANCE = "endingBalance";
-    private final static String COLUMN_MONTH_HOURS = "hours";
     private static MyDBHandler instance;
 
     //Constructor to invoke this class
@@ -82,6 +54,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Log.d("DATABASE" , "MyHandler onCreate() is Called....");
         createBalanceSheetTable(db);
         createSupportTable(db);
+        createMonthlyViewTable(db);
     }
 
     //The onUpgrade() method will only be called when the version integer is larger than the current version running in the app.
@@ -96,63 +69,68 @@ public class MyDBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
     //Creating Support Table
     private void createSupportTable(SQLiteDatabase db) {
-        String query = " CREATE TABLE IF NOT EXISTS " + TABLE_NAME_SUPPORT + "(" +
-        COLUMN_SUPPORT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                COLUMN_SUPPORT_MONTH + " TEXT," +
-                COLUMN_SUPPORT_YEAR + " TEXT," +
-                COLUMN_SUPPORT_AMOUNT + " INTEGER" + ")";
+        String query = " CREATE TABLE IF NOT EXISTS " + AppConstants.TABLE_NAME_SUPPORT + "(" +
+                AppConstants.COLUMN_SUPPORT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                AppConstants.COLUMN_SUPPORT_MONTH + " TEXT," +
+                AppConstants.COLUMN_SUPPORT_YEAR + " TEXT," +
+                AppConstants.COLUMN_SUPPORT_AMOUNT + " INTEGER" + ")";
         db.execSQL(query);
         Log.d("DATABASE" , "CreateSupportTable is Called....");
     }
 
     //Creating BalanceSheet Table
     private void createBalanceSheetTable(SQLiteDatabase db) {
-        String query = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_BALANCESHEET + "(" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                COLUMN_PERIOD + " TEXT," +
-                COLUMN_PAYCHECKDATE + " TEXT," +
-                COLUMN_OPENING_BALANCE + " REAL," +
-                COLUMN_RATE + " REAL," +
-                COLUMN_HOURS + " INTEGER," +
-                COLUMN_CREDIT + " REAL," +
-                COLUMN_DEBIT + " REAL," +
-                COLUMN_ENDING_BALANCE + " REAL" + ")";
+        String query = "CREATE TABLE IF NOT EXISTS " + AppConstants.TABLE_NAME_BALANCESHEET + "(" +
+                AppConstants.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                AppConstants.COLUMN_PERIOD + " TEXT," +
+                AppConstants.COLUMN_PAYCHECKDATE + " TEXT," +
+                AppConstants.COLUMN_OPENING_BALANCE + " REAL," +
+                AppConstants.COLUMN_RATE + " REAL," +
+                AppConstants.COLUMN_HOURS + " INTEGER," +
+                AppConstants.COLUMN_CREDIT + " REAL," +
+                AppConstants.COLUMN_DEBIT + " REAL," +
+                AppConstants.COLUMN_ENDING_BALANCE + " REAL" + ")";
         db.execSQL(query);
         Log.d("DATABASE" , "CreateBalanceSheetTable is Called....");
     }
 
+    //Creating MonthlyView Table
+    private void createMonthlyViewTable(SQLiteDatabase db) {
+        String query = "CREATE TABLE IF NOT EXISTS " + AppConstants.TABLE_NAME_MONTHLYVIEW + "(" +
+                AppConstants.COLUMN_MONTHVIEW_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                AppConstants.COLUMN_MONTHVIEW_MONTH + " TEXT," +
+                AppConstants.COLUMN_MONTHVIEW_YEAR + " INTEGER," +
+                AppConstants.COLUMN_MONTHVIEW_OPENING_BALANCE + " REAL," +
+                AppConstants.COLUMN_MONTHVIEW_ENDING_BALANCE + " REAL," +
+                AppConstants.COLUMN_MONTHVIEW_HOURS + " INTEGER" + ")";
+        db.execSQL(query);
 
+    }
 
-    public void insertRecordsIntoBalanceSheetTable(String period,
-                                                   String payCheckDate,
-                                                   float openingBalance,
-                                                   float rate, int hours,
-                                                   float credit, float debit,
-                                                   float endingBalance) {
+    public void insertRecordsIntoBalanceSheetTable(BalanceSheetDetails balanceSheetDetails) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_PERIOD, period);
-        values.put(COLUMN_PAYCHECKDATE, payCheckDate);
-        values.put(COLUMN_OPENING_BALANCE, openingBalance);
-        values.put(COLUMN_RATE, rate);
-        values.put(COLUMN_HOURS, hours);
-        values.put(COLUMN_CREDIT, credit);
-        values.put(COLUMN_DEBIT, debit);
-        values.put(COLUMN_ENDING_BALANCE, endingBalance);
-        database.insert(TABLE_NAME_BALANCESHEET,null,values);
+        values.put(AppConstants.COLUMN_PERIOD, balanceSheetDetails.getPeriod());
+        values.put(AppConstants.COLUMN_PAYCHECKDATE, balanceSheetDetails.getPayCheckDate());
+        values.put(AppConstants.COLUMN_OPENING_BALANCE, balanceSheetDetails.getOpeningBalance());
+        values.put(AppConstants.COLUMN_RATE, balanceSheetDetails.getRate());
+        values.put(AppConstants.COLUMN_HOURS, balanceSheetDetails.getHours());
+        values.put(AppConstants.COLUMN_CREDIT, balanceSheetDetails.getCredit());
+        values.put(AppConstants.COLUMN_DEBIT, balanceSheetDetails.getDebit());
+        values.put(AppConstants.COLUMN_ENDING_BALANCE, balanceSheetDetails.getEndingBalance());
+        database.insert(AppConstants.TABLE_NAME_BALANCESHEET,null,values);
 
         Log.d("Database", "insertingRecordsWithValues() method....");
-        Log.d("Database", "period..." + period);
-        Log.d("Database", "payCheckDate..." + payCheckDate);
-        Log.d("Database", "opening balance..." + openingBalance);
-        Log.d("Database", "rate..." + rate);
-        Log.d("Database", "hours..." + hours);
-        Log.d("Database", "credit..." + credit);
-        Log.d("Database", "debit..." + debit);
-        Log.d("Database", "endingBalance..." + endingBalance);
+        Log.d("Database", "period..." + balanceSheetDetails.getPeriod());
+        Log.d("Database", "payCheckDate..." + balanceSheetDetails.getPayCheckDate());
+        Log.d("Database", "opening balance..." + balanceSheetDetails.getOpeningBalance());
+        Log.d("Database", "rate..." + balanceSheetDetails.getRate());
+        Log.d("Database", "hours..." + balanceSheetDetails.getHours());
+        Log.d("Database", "credit..." + balanceSheetDetails.getCredit());
+        Log.d("Database", "debit..." + balanceSheetDetails.getDebit());
+        Log.d("Database", "endingBalance..." + balanceSheetDetails.getEndingBalance());
 
         Log.d("Database", "Inserting all the values...");
         database.close();
@@ -161,14 +139,24 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public void insertRecordsIntoSupportTable(SupportTableDetails supportTableDetails) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_SUPPORT_MONTH, supportTableDetails.getMonth());
-        values.put(COLUMN_SUPPORT_YEAR, supportTableDetails.getYear());
-        values.put(COLUMN_SUPPORT_AMOUNT, supportTableDetails.getCost());
-        database.insert(TABLE_NAME_SUPPORT,null,values);
+        values.put(AppConstants.COLUMN_SUPPORT_MONTH, supportTableDetails.getMonth());
+        values.put(AppConstants.COLUMN_SUPPORT_YEAR, supportTableDetails.getYear());
+        values.put(AppConstants.COLUMN_SUPPORT_AMOUNT, supportTableDetails.getCost());
+        database.insert(AppConstants.TABLE_NAME_SUPPORT,null,values);
 
         Log.d("Database", "after inserting month in support..." + supportTableDetails.getMonth());
         Log.d("Database", "after inserting year in support..." + supportTableDetails.getYear());
         Log.d("Database", "after inserting cost in support..." + supportTableDetails.getCost());
         database.close();
+    }
+
+    //get the sum of entire row
+    public int sumOfEntireColumn(String columnName, String tableName) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT SUM(" + columnName + ") FROM " + tableName;
+        Cursor cursor = database.rawQuery(query,null);
+        cursor.close();
+
+        return cursor.getCount();
     }
 }

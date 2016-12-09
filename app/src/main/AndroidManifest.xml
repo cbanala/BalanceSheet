@@ -26,6 +26,7 @@
         <activity android:name=".view.activities.SecondPayPeriodActivity"/>
         <activity android:name=".view.activities.VendorHoursActivity"/>
         <activity android:name=".view.activities.OtherDeductionsActivity"/>
+        <activity android:name=".view.activities.MonthlyViewActivity"/>
 
     </application>
 

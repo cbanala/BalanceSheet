@@ -1,5 +1,6 @@
 package company.codeforce.org.balancesheet.view.activities;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -90,18 +91,22 @@ public class FirstPayPeriodActivity extends BaseBalanceSheetActivity implements 
                 setAlltextValues();
                 //TODO: Check All fields are entered
                 break;
-            case R.id.first_submit_btn:
-                //TODO: Submit the data to the MonthView
-                getAlltheValues();
-                finish();
-                break;
             case R.id.first_calculate_btn:
                 calculateRemainingBalance();
+                break;
+            case R.id.first_submit_btn:
+                //TODO: Submit the data to the MonthView
+                submitTheValuesToDB();
+                finish();
+                break;
         }
     }
 
     private void setAlltextValues() {
+        //TODO: Dialogue ("Check whether you have filled all the values")
+    }
 
+    private void submitTheValuesToDB() {
         BalanceSheetDetails balanceSheetDetails = new BalanceSheetDetails();
         balanceSheetDetails.setPeriod(payPeriod.getText().toString());
         balanceSheetDetails.setPayCheckDate(payCheckDate.getText().toString());
@@ -123,26 +128,14 @@ public class FirstPayPeriodActivity extends BaseBalanceSheetActivity implements 
         Log.d("Database", "debit..." + Float.parseFloat(debitedAmount.getText().toString()));
         Log.d("Database", "endingBalance..." + Float.parseFloat(remainingBalance.getText().toString()));
 
-
-    }
-
-
-    private void getAlltheValues() {
         Log.d("Database", "Getting all the values...");
 
         //TODO: GETTING ALL NULL VALUES....
-        BalanceSheetDetails balanceSheetDetails = new BalanceSheetDetails();
-        String period = balanceSheetDetails.getPeriod();
-        String payCheckDate = balanceSheetDetails.getPayCheckDate();
-        float openingBalance = balanceSheetDetails.getOpeningBalance();
-        float rate = balanceSheetDetails.getRate();
-        int hours = balanceSheetDetails.getHours();
-        float credit = balanceSheetDetails.getCredit();
-        float debit = balanceSheetDetails.getDebit();
-        float endingBalance = balanceSheetDetails.getEndingBalance();
 
-        MyDBHandler.getInstance().insertRecordsIntoBalanceSheetTable(period,payCheckDate,openingBalance,rate,hours,credit,debit,endingBalance);
-
+        //Calling DB
+        SQLiteDatabase database = MyDBHandler.getInstance().getWritableDatabase();
+        MyDBHandler.getInstance().onCreate(database);
+        MyDBHandler.getInstance().insertRecordsIntoBalanceSheetTable(balanceSheetDetails);
     }
 
 

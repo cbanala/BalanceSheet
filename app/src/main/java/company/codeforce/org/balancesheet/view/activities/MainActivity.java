@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent= null;
         if (id == R.id.monthly_view) {
+            startActivity(new Intent(this, MonthlyViewActivity.class));
             // Handle the camera action
         } else if (id == R.id.balance_sheet) {
             intent = new Intent(this , BalanceSheetActivity.class);
