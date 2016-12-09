@@ -24,6 +24,7 @@ import company.codeforce.org.balancesheet.adapter.BalanceSheetAdapter;
 import company.codeforce.org.balancesheet.database.MyDBHandler;
 import company.codeforce.org.balancesheet.model.SupportTableDetails;
 import company.codeforce.org.balancesheet.presenter.SupportPresenter;
+import company.codeforce.org.balancesheet.utils.AppConstants;
 import company.codeforce.org.balancesheet.viewInterface.SupportInterface;
 
 /**
@@ -122,7 +123,10 @@ public class SupportActivity extends BaseBalanceSheetActivity implements View.On
             SQLiteDatabase database = MyDBHandler.getInstance().getWritableDatabase();
             MyDBHandler.getInstance().onCreate(database);
             MyDBHandler.getInstance().insertRecordsIntoSupportTable(supportTableDetails);
-        } else if (v.getId() == R.id.date_picker_spinner) {
+            //TODO: TRYING TO SET THE VALUE OF DEDUCTION
+//            yourDeductionsTV.setText(MyDBHandler.getInstance().sumOfEntireColumn(AppConstants.COLUMN_SUPPORT_AMOUNT,
+//                    AppConstants.TABLE_NAME_SUPPORT));
+//        } else if (v.getId() == R.id.date_picker_spinner) {
 //            //Use the current date as the default date in the picker
 //            final Calendar calendar = Calendar.getInstance();
 //            int year = calendar.get(Calendar.YEAR);
