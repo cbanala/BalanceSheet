@@ -23,7 +23,6 @@ public class MyDBHandler extends SQLiteOpenHelper {
     SQLiteDatabase sqLiteDatabase;
 
 
-
     String TABLE_NAME[] = {
             AppConstants.TABLE_NAME_BALANCESHEET,
             AppConstants.TABLE_NAME_SUPPORT,
@@ -36,11 +35,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
     //Constructor to invoke this class
     private MyDBHandler(Context context) {
         super(context, AppConstants.DATABASE_NAME, null, AppConstants.DATABASE_VERSION);
-        Log.d("DATABASE" , "MyHandler is Called....");
+        Log.d("DATABASE", "MyHandler is Called....");
     }
 
     public static MyDBHandler getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new MyDBHandler(BalanceSheetApplication.getInstance().getApplicationContext());
         }
         return instance;
@@ -51,7 +50,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     //The Database is not opened when the database helper object itself is called.
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d("DATABASE" , "MyHandler onCreate() is Called....");
+        Log.d("DATABASE", "MyHandler onCreate() is Called....");
         createBalanceSheetTable(db);
         createSupportTable(db);
         createMonthlyViewTable(db);
@@ -61,7 +60,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        for(String tables : TABLE_NAME){
+        for (String tables : TABLE_NAME) {
             //Drop Older table if existed.
             db.execSQL("DROP TABLE IF EXISTS" + tables);
         }
@@ -77,7 +76,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 AppConstants.COLUMN_SUPPORT_YEAR + " TEXT," +
                 AppConstants.COLUMN_SUPPORT_AMOUNT + " INTEGER" + ")";
         db.execSQL(query);
-        Log.d("DATABASE" , "CreateSupportTable is Called....");
+        Log.d("DATABASE", "CreateSupportTable is Called....");
     }
 
     //Creating BalanceSheet Table
@@ -93,7 +92,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 AppConstants.COLUMN_DEBIT + " REAL," +
                 AppConstants.COLUMN_ENDING_BALANCE + " REAL" + ")";
         db.execSQL(query);
-        Log.d("DATABASE" , "CreateBalanceSheetTable is Called....");
+        Log.d("DATABASE", "CreateBalanceSheetTable is Called....");
     }
 
     //Creating MonthlyView Table
@@ -120,7 +119,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         values.put(AppConstants.COLUMN_CREDIT, balanceSheetDetails.getCredit());
         values.put(AppConstants.COLUMN_DEBIT, balanceSheetDetails.getDebit());
         values.put(AppConstants.COLUMN_ENDING_BALANCE, balanceSheetDetails.getEndingBalance());
-        database.insert(AppConstants.TABLE_NAME_BALANCESHEET,null,values);
+        database.insert(AppConstants.TABLE_NAME_BALANCESHEET, null, values);
 
         Log.d("Database", "insertingRecordsWithValues() method....");
         Log.d("Database", "period..." + balanceSheetDetails.getPeriod());
@@ -142,7 +141,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         values.put(AppConstants.COLUMN_SUPPORT_MONTH, supportTableDetails.getMonth());
         values.put(AppConstants.COLUMN_SUPPORT_YEAR, supportTableDetails.getYear());
         values.put(AppConstants.COLUMN_SUPPORT_AMOUNT, supportTableDetails.getCost());
-        database.insert(AppConstants.TABLE_NAME_SUPPORT,null,values);
+        database.insert(AppConstants.TABLE_NAME_SUPPORT, null, values);
 
         Log.d("Database", "after inserting month in support..." + supportTableDetails.getMonth());
         Log.d("Database", "after inserting year in support..." + supportTableDetails.getYear());
@@ -152,11 +151,15 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     //get the sum of entire row
     public int sumOfEntireColumn(String columnName, String tableName) {
+        int totalAmt = 0;
         SQLiteDatabase database = this.getReadableDatabase();
         String query = "SELECT SUM(" + columnName + ") FROM " + tableName;
-        Cursor cursor = database.rawQuery(query,null);
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            totalAmt = cursor.getInt(cursor.getColumnIndex(columnName));
+        }
         cursor.close();
-
-        return cursor.getCount();
+        return totalAmt;
     }
 }
